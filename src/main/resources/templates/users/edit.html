@@ -13,10 +13,6 @@
         </header>
 
         <section>
-          <div th:if="${validationError}" th:each="error : ${validationError}">
-            <label class="text-danger" th:text="${error}"></label>
-          </div>
-
           <form action="" th:object="${updateUserRequestBody}">
             <input type="hidden" th:field="*{id}" />
 
