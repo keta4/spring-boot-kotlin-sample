@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ja">
+  <head th:replace="~{common/common :: head_fragment(title='web-app')}"></head>
+
+  <body>
+    <main>
+      <section>
+        <div class="container">
+          <header>
+            <h1>web-app</h1>
+          </header>
+          <a href="" th:href="@{/users}" class="btn btn-primary"
+            >ユーザー一覧</a
+          >
+        </div>
+        <!-- /.container -->
+      </section>
+    </main>
+  </body>
+</html>

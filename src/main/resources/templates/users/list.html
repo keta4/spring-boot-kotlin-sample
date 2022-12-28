@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ja">
+  <head
+    th:replace="~{common/common :: head_fragment(title='ユーザー一覧')}"
+  ></head>
+
+  <body>
+    <header></header>
+    <main>
+      <div class="container">
+        <header>
+          <h1>ユーザー一覧</h1>
+        </header>
+
+        <section>
+          <div class="float-end">
+            <a href="" th:href="@{/users/add}" class="btn btn-primary"
+              >新規登録はこちら</a
+            >
+          </div>
+
+          <form action="" th:object="${searchUserRequestBody}">
+            <div class="form-group">
+              <label for="name">名前</label>
+              <input
+                type="text"
+                class="w-50 form-control"
+                id="name"
+                th:field="*{name}"
+              />
+            </div>
+            <br />
+            <button
+              type="submit"
+              th:formaction="@{/users/search}"
+              th:formmethod="post"
+              class="btn btn-primary"
+            >
+              検索
+            </button>
+          </form>
+        </section>
+
+        <br />
+
+        <section>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>名前</th>
+                <th>住所</th>
+                <th>電話番号</th>
+                <th>更新日時</th>
+                <th>登録日時</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr
+                th:each="user : ${userList}"
+                th:object="${user}"
+                class="align-middle"
+              >
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{address}"></td>
+                <td th:text="*{phone}"></td>
+                <td th:text="*{#temporals.formatISO(updateDate)}"></td>
+                <td th:text="*{#temporals.formatISO(createDate)}"></td>
+                <td>
+                  <a
+                    href=""
+                    th:href="@{/users/{id}(id=*{id})}"
+                    class="btn btn-secondary"
+                    >詳細</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- /.table table-striped -->
+        </section>
+      </div>
+      <!-- /.container -->
+    </main>
+    <footer></footer>
+  </body>
+</html>

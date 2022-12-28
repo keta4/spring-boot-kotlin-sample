@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ja">
+  <head
+    th:replace="~{common/common :: head_fragment(title='ユーザー情報編集')}"
+  ></head>
+
+  <body>
+    <header></header>
+    <main>
+      <div class="container">
+        <header>
+          <h1>ユーザー情報編集</h1>
+        </header>
+
+        <section>
+          <div th:if="${validationError}" th:each="error : ${validationError}">
+            <label class="text-danger" th:text="${error}"></label>
+          </div>
+
+          <form action="" th:object="${updateUserRequestBody}">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="row mx-md-n5">
+              <div class="col-2 pt-3 border bg-light">
+                名前
+                <span class="badge bg-danger">必須</span>
+              </div>
+
+              <div class="col py-2 border">
+                <input
+                  type="text"
+                  class="form-control"
+                  th:field="*{name}"
+                  th:errorclass="is-invalid"
+                  id="inputName"
+                  placeholder="Alice"
+                />
+                <div class="invalid-feedback" th:errors="*{name}"></div>
+              </div>
+            </div>
+            <!-- /.row mx-md-n5 -->
+
+            <div class="row mx-md-n5">
+              <div class="col-2 pt-3 border bg-light">
+                住所
+                <span class="badge bg-danger">必須</span>
+              </div>
+
+              <div class="col py-2 border">
+                <input
+                  type="text"
+                  class="form-control"
+                  th:field="*{address}"
+                  th:errorclass="is-invalid"
+                  id="inputAddress"
+                  placeholder="東京都千代田区千代田1-1"
+                />
+                <div class="invalid-feedback" th:errors="*{address}"></div>
+              </div>
+            </div>
+            <!-- /.row mx-md-n5 -->
+
+            <div class="row mx-md-n5">
+              <div class="col-2 pt-3 border bg-light">
+                電話番号 <span class="badge bg-danger">必須</span>
+              </div>
+
+              <div class="col py-2 border">
+                <input
+                  type="text"
+                  th:field="*{phone}"
+                  th:errorclass="is-invalid"
+                  class="form-control"
+                  id="inputPhone"
+                  placeholder="090-1234-1234"
+                />
+                <div class="invalid-feedback" th:errors="*{phone}"></div>
+              </div>
+            </div>
+            <!-- /.row mx-md-n5 -->
+
+            <br />
+
+            <div class="text-center">
+              <input
+                type="submit"
+                th:formaction="@{/users/{id}(id=*{id})}"
+                th:formmethod="post"
+                class="btn btn-primary"
+                value="保存"
+              />
+              <a
+                href=""
+                th:href="@{/users/{id}(id=*{id})}"
+                class="btn btn-secondary"
+                >キャンセル</a
+              >
+            </div>
+            <!-- /.text-center -->
+          </form>
+        </section>
+      </div>
+      <!-- /.container -->
+    </main>
+    <footer></footer>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ja">
+  <head
+    th:replace="~{common/common :: head_fragment(title='ユーザー詳細')}"
+  ></head>
+
+  <body>
+    <header></header>
+    <main>
+      <div class="container">
+        <header>
+          <h1>ユーザー詳細</h1>
+        </header>
+
+        <section>
+          <div th:object="${userData}">
+            <div class="row mx-md-n5">
+              <div class="col-2 pt-3 border bg-light">ID</div>
+              <div class="col pt-3 border">
+                <p th:text="*{id}"></p>
+              </div>
+            </div>
+            <!-- /.row mx-md-n5 -->
+
+            <div class="row mx-md-n5">
+              <div class="col-2 pt-3 border bg-light">名前</div>
+              <div class="col pt-3 border">
+                <p th:text="*{name}"></p>
+              </div>
+            </div>
+            <!-- /.row mx-md-n5 -->
+
+            <div class="row mx-md-n5">
+              <div class="col-2 pt-3 border bg-light">住所</div>
+              <div class="col pt-3 border">
+                <p th:text="*{address}"></p>
+              </div>
+            </div>
+            <!-- /.row mx-md-n5 -->
+
+            <div class="row mx-md-n5">
+              <div class="col-2 pt-3 border bg-light">電話番号</div>
+              <div class="col pt-3 border">
+                <p th:text="*{phone}"></p>
+              </div>
+            </div>
+            <!-- /.row mx-md-n5 -->
+
+            <div class="row mx-md-n5">
+              <div class="col-2 pt-3 border bg-light">更新日時</div>
+              <div class="col pt-3 border">
+                <p th:text="*{#temporals.formatISO(updateDate)}"></p>
+              </div>
+            </div>
+            <!-- /.row mx-md-n5 -->
+
+            <div class="row mx-md-n5">
+              <div class="col-2 pt-3 border bg-light">登録日時</div>
+              <div class="col pt-3 border">
+                <p th:text="*{#temporals.formatISO(createDate)}"></p>
+              </div>
+            </div>
+            <!-- /.row mx-md-n5 -->
+
+            <br />
+
+            <div class="text-center">
+              <a
+                href=""
+                th:href="@{/users/{id}/edit(id=*{id})}"
+                class="btn btn-primary"
+                >編集</a
+              >
+
+              <a
+                th:href="@{/users/{id}/delete(id=*{id})}"
+                class="btn btn-danger"
+                name="delete"
+                >削除</a
+              >
+
+              <!-- <form th:action="@{/users/{id}/(id=*{id})}" th:method="delete">
+                <button type="submit" class="btn btn-secondary">削除</button>
+              </form> -->
+
+              <a href="/users" class="btn btn-secondary">一覧に戻る</a>
+            </div>
+            <!-- /.text-center -->
+          </div>
+          <!-- /th:object="${userData}" -->
+        </section>
+      </div>
+      <!-- /.container -->
+    </main>
+    <footer></footer>
+  </body>
+</html>
