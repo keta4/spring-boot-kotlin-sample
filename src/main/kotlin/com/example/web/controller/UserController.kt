@@ -93,7 +93,7 @@ class UserController {
 
         // 入力チェックエラーの場合
         if (result.hasErrors()) {
-            return "/users/add"
+            return "/users/edit"
         }
 
         // ユーザー編集
